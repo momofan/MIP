@@ -1,6 +1,8 @@
 # 百度MIP扩展组件开发手册（不依赖编译版）
 
-## 代码规范
+## 开发之前
+
+### 1、代码规范
 
 JS
 
@@ -14,13 +16,16 @@ https://github.com/ecomfe/spec/blob/master/css-style-guide.md
 
 http://fecs.baidu.com/
 
+### 2、github 新建 ISSUE，申请自定义 html 标签名
+
+
 ## 怎么开发
 
 	1、在页面头部引入 css：<link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.css">
 
 	2、在 body 最后引入 js：<script src="https://mipcache.bdstatic.com/static/mipmain-v0.1.1.js"></script> todo 待上线
 
-	3、在2的 js 后面外链或内联你的组件 js。写法参照 组件 js 构成介绍
+	3、在2的 js 后面外链或内联你的组件 js，若页面依赖多个组件，依次引入组件 js，写法参照 组件 js 构成介绍。
 
 ### 组件 js 构成介绍(需要按照最新的改一下)
 
@@ -70,8 +75,48 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 	测试覆盖范围  待补充
 
 ## 测试 OK 了之后需要做什么？
+
+1、书写详细的组件功能说明文档
 	
-	1、申请 MIP 值周同学进行代码的 codereview
+	参照：https://www.mipengine.org/doc.html#../docs/4-widget/4-customize-widget/appdl-widget.md
+
+2、代码提交
+
+### 线上github 方式
+	
+```
+
+第一步，建分支，删本地
+ git checkout -b myfeature;
+ git push origin myfeature;
+ git checkout master;
+ git branch -d myfeature;
+
+第二步，拉分支，做开发
+ git checkout -b dperf origin/dperf;
+ git add xxx; git commit -m 'dev xxx';
+ git push origin dperf;
+
+代码push到origin服务器后，可以去网页上发起Merge Request
+
+第三步, 合并分支
+ git checkout master;
+ git pull;
+ git checkout dperf;
+ git fetch origin master;
+ git rebase master;
+
+ ```
+
+ ### 线下方式 qq
+	
+	1、申请 MIP qq 号值周同学进行代码的 codereview
+
+	2、cr 完成后，代码发送给值周同学
+
+3、上线
+	
+	目前每周二、四上线两次，统一下午三点上线，下午二点需要代码 ready，超过时间等下次上线窗口
 
 
 
@@ -107,6 +152,8 @@ require(['mip-demoforall/* 你的组件名称，需要更改4 */'], function (de
 
     </body>
     <script src="https://mipcache.bdstatic.com/static/mipmain-v0.0.1.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v0.1/mip-link.js"></script>
+    <script src="https://mipcache.bdstatic.com/static/v0.1/mip-stats-bidu.js"></script>
     <script>
         
         /**
